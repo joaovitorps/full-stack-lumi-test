@@ -1,24 +1,22 @@
-const express = require("express");
 const database = require("./db/models/index");
 
-const app = express();
+const app = require("./app");
+const PORT = process.env.PORT || 8000;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
 
-try {
-  database.sequelize.authenticate().then(() => console.log("done"));
-  database.sequelize
-    .sync()
-    .then(() => console.log("Synced"))
-    .catch((err) => console.log(err));
-} catch (error) {
-} finally {
-  // database.sequelize.close();
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build", index.html));
+  });
 }
 
-require("./routes/task")(app);
-
-app.listen(8000, () => {
-  console.log("Server running at - http://localhost:8000");
-});
+try {
+  database.sequelize
+    .authenticate()
+    .then(
+      app.listen(PORT, console.log("Server running at - http://localhost:8000"))
+    );
+} catch (error) {
+  console.log(error);
+}

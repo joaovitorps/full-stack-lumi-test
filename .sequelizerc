@@ -1,7 +1,4 @@
 var path = require("path");
-require("dotenv").config({
-  path: ".env.development",
-});
 
 module.exports = {
   debug: true,

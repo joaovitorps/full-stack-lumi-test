@@ -1,11 +1,11 @@
 const db = require("../db/models");
 const Task = db.task;
 
-exports.findAll = async (req, res) => {
-  Task.findAll().then((data) => res.send(data));
+exports.getTasks = async (req, res) => {
+  await Task.findAll().then((data) => res.send(data));
 };
 
-exports.create = async (req, res) => {
+exports.createTask = async (req, res) => {
   const task = {
     name: req.body.task.name,
   };
@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
   });
 };
 
-exports.delete = async (req, res) => {
+exports.deleteTask = async (req, res) => {
   const id = req.params.id;
   await Task.destroy({ where: { id: id } }).then((num) => {
     if (num == 1) {

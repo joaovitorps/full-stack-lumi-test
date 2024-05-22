@@ -1,11 +1,11 @@
-module.exports = (app) => {
-  const tasks = require("../controllers/task.js");
+const express = require("express");
 
-  var router = require("express").Router();
+const { getTasks, createTask, deleteTask } = require("../controllers/task.js");
 
-  router.get("/", tasks.findAll);
-  router.post("/new", tasks.create);
-  router.delete("/:id", tasks.delete);
+const router = express.Router();
 
-  app.use("/api/tasks", router);
-};
+router.get("/", getTasks);
+router.post("/new", createTask);
+router.delete("/:id", deleteTask);
+
+module.exports = router;
