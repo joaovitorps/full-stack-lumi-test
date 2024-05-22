@@ -5,6 +5,15 @@ const TaskRoutes = require("./routes/task");
 
 const app = express();
 
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+app.get("/api", (req, res) => {
+  res.status(200).json({ server_running: true });
+});
+
+app.use("/api/tasks", TaskRoutes);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -12,14 +21,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
-
-app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-app.get("/", (req, res) => {
-  res.status(200).json({ server_running: true });
-});
-
-app.use("/api/tasks", TaskRoutes);
 
 module.exports = app;
