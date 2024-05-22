@@ -6,7 +6,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("api", {
+    const response = await fetch("api/tasks/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,11 +32,12 @@ function App() {
         <button type="submit">Send</button>
         <br />
         Tasks:
-        <ul>
+        {taskName}
+        {/* <ul>
           {tasks.map((task) => {
             return <li>{task.name}</li>;
           })}
-        </ul>
+        </ul> */}
       </form>
     </div>
   );

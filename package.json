@@ -4,17 +4,27 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "npm run services:up && npx nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server:start\" \"npm run client:start\"",
+    "server:start": "npm run services:up && npx nodemon --env-file=.env.development server.js",
+    "client:start": "cd client && npm start",
     "services:up": "docker-compose -f infra/compose.yaml up -d",
     "services:down": "docker-compose -f infra/compose.yaml down",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
   }
 }
