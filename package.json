@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "20.11.1",
+    "npm": "10.2.4"
+  },
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"npm run server:start\" \"npm run client:start\"",
     "start": "node server.js",
@@ -38,7 +42,6 @@
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "sequelize-cli": "^6.6.2",
-    "supertest": "^7.0.0",
-    "typescript-eslint": "^7.10.0"
+    "supertest": "^7.0.0"
   }
 }
