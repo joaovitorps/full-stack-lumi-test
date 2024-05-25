@@ -1,12 +1,14 @@
-require("dotenv").config({
+import dotenv from "dotenv";
+
+dotenv.config({
   path: ".env.development",
 });
 
 const dbConfig = {
-  host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD,
   username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  host: process.env.POSTGRES_HOST,
   dialect: "postgres",
   pool: {
     max: 1,
@@ -15,11 +17,8 @@ const dbConfig = {
   },
 };
 
-module.exports = {
+export default {
   development: {
-    ...dbConfig,
-  },
-  test: {
     ...dbConfig,
   },
   production: {

@@ -1,7 +1,7 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
 
-const TaskRoutes = require("./routes/task");
+import TaskRoutes from "./routes/task.js";
 
 const app = express();
 
@@ -22,4 +22,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-module.exports = app;
+export default app;

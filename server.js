@@ -1,10 +1,10 @@
-const database = require("./db/models/index");
+import db from "./db/models/index.js";
+import app from "./app.js";
 
-const app = require("./app");
 const PORT = process.env.PORT || 8000;
 
 try {
-  database.sequelize
+  db.sequelize
     .authenticate()
     .then(
       app.listen(PORT, console.log("Server running at - http://localhost:8000"))
