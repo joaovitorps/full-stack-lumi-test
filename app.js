@@ -3,6 +3,7 @@ import path from "path";
 
 import TaskRoutes from "./routes/task.js";
 
+const __dirname = import.meta.dirname;
 const app = express();
 
 app.use(express.json());
