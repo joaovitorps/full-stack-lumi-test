@@ -6,9 +6,7 @@ const PORT = process.env.PORT || 8000;
 try {
   db.sequelize
     .authenticate()
-    .then(
-      app.listen(PORT, console.log("Server running at - http://localhost:8000"))
-    );
+    .then(app.listen(PORT, console.log("Server running")));
 } catch (error) {
   console.log(error);
 }

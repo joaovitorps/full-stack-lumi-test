@@ -4,6 +4,14 @@
   "description": "",
   "main": "server.js",
   "type": "module",
+  "transform": {
+    "\\.[jt]sx?$": "babel-jest"
+  },
+  "ava": {
+    "files": [
+      "tests/fatura/post*"
+    ]
+  },
   "engines": {
     "node": "20.11.1",
     "npm": "10.2.4"
@@ -18,7 +26,7 @@
     "services:down": "docker-compose -f infra/compose.yaml down",
     "migrate:up": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "test": "jest --testTimeout=5000",
+    "test": "ava --watch",
     "test:watch": "jest --watch --testTimeout=5000",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
@@ -28,23 +36,28 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ava": "^6.1.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "pdf2json": "^3.1.3",
     "pdfreader": "^3.0.2",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
     "@eslint/js": "^9.3.0",
+    "babel-jest": "^29.7.0",
     "concurrently": "^8.2.2",
+    "esbuild": "^0.21.4",
+    "esbuild-jest": "^0.5.0",
     "eslint": "^9.3.0",
     "globals": "^15.3.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
-    "sequelize-cli": "^6.6.2",
-    "supertest": "^7.0.0"
+    "sequelize-cli": "^6.6.2"
   }
 }

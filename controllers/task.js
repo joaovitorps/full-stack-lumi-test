@@ -3,7 +3,13 @@ import db from "../db/models/index.js";
 const Task = db.task;
 
 export async function getTasks(req, res) {
-  await Task.findAll().then((data) => res.send(data));
+  await Task.findAll()
+    .then((data) => res.send(data))
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error while getting tasks",
+      });
+    });
 }
 
 export async function createTask(req, res) {

@@ -21,6 +21,9 @@ export default {
   development: {
     ...dbConfig,
   },
+  test: {
+    ...dbConfig,
+  },
   production: {
     ...dbConfig,
     ssl: true,

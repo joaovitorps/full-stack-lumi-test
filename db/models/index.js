@@ -2,6 +2,7 @@ import Sequelize, { DataTypes, Model } from "sequelize";
 
 import dbConfig from "../../infra/database.js";
 import task from "./task.js";
+import Fatura from "./fatura.js";
 
 const env = process.env.NODE_ENV || "development";
 
@@ -15,5 +16,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.task = task(Model, sequelize, DataTypes);
+db.Fatura = Fatura(Model, sequelize, DataTypes);
 
 export default db;

@@ -3,7 +3,6 @@ import path from "path";
 
 import TaskRoutes from "./routes/task.js";
 
-const __dirname = import.meta.dirname;
 const app = express();
 
 app.use(express.json());
@@ -16,6 +15,8 @@ app.get("/api", (req, res) => {
 app.use("/api/tasks", TaskRoutes);
 
 if (process.env.NODE_ENV === "production") {
+  const __dirname = import.meta.dirname;
+
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", (req, res) => {
